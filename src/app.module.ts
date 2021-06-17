@@ -6,7 +6,7 @@ import { JobsController } from './jobs/jobs.controller';
 @Module({
   imports: [
     HttpModule.register({
-      timeout: 5000,
+      timeout: 15000,
       maxRedirects: 5,
     }),
   ],

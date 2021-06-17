@@ -24,27 +24,79 @@ async function bootstrap() {
       JSON.stringify(jobs),
       'utf8',
     );
-    await Promise.all(jobs.map((j) => saveJobDetails(j.job_id)));
+    jobs.forEach((j) => saveJobDetailsCached(j));
+    // await Promise.all(jobs.map((j) => saveJobDetails(j.job_id)));
   }
 
-  async function saveJobDetails(jobId: string) {
-    const response = await httpService
-      .get(`${apiBaseUrl}/${jobId}/detail`)
-      .toPromise();
-
+  async function saveJobDetailsCached(job: any) {
     await fs.writeFile(
-      path.join(__dirname, `../assets/data/jobs/job-${jobId}.json`),
-      JSON.stringify(sanitizeJob(response.data)),
+      path.join(__dirname, `../assets/data/jobs/job-${job.job_id}.json`),
+      JSON.stringify(sanitizeJob(job)),
       'utf8',
     );
   }
+
+  // async function saveJobDetails(jobId: string) {
+  //   const response = await httpService
+  //     .get(`${apiBaseUrl}/${jobId}/detail`)
+  //     .toPromise();
+  //
+  //   await fs.writeFile(
+  //     path.join(__dirname, `../assets/data/jobs/job-${jobId}.json`),
+  //     JSON.stringify(sanitizeJob(response.data)),
+  //     'utf8',
+  //   );
+  // }
 }
 
 function sanitizeJob(job: any) {
-  const { job_id } = job;
+  const billRate = randomBillRate();
+  const jobPrice = calculatePrice(billRate);
   return {
-    job_id,
+    job_id: job.job_id,
+    job_price: jobPrice,
+    job_status: job.job_status,
+    facility: {
+      ...job.facility,
+      fac_name: `${job.facility.fac_city} ${randomFacilitySuffix()}`,
+      fac_street_address: `Something Str ${randomStreetNo()}`,
+      facilities_description: undefined,
+    },
+    billRate: billRate,
+    jobSpecialties: job.jobSpecialties.map((s) => ({
+      specialty: {
+        speciality_color: s.specialty.speciality_color,
+        specialty_title: s.specialty.specialty_title,
+        specialty_acronym: s.specialty.specialty_acronym,
+      },
+    })),
+    job_shift: job.job_shift,
+    job_start_date: job.job_start_date,
+    licenseType: job.licenseType,
+    job_type: job.job_type,
+    job_description: job.job_description,
   };
+}
+
+function randomFacilitySuffix() {
+  return ['Care', 'Healthcare', 'Care Center', 'Nursing Home', 'Hospital'][
+    Math.floor(Math.random() * 5)
+  ];
+}
+
+function randomBillRate() {
+  const max = 45;
+  const min = 25;
+  const rate = Math.random() * (max - min) + min;
+  return Math.round(rate * 10) / 10;
+}
+
+function calculatePrice(billRate: number) {
+  return Math.round(billRate * 0.85 * 10) / 10;
+}
+
+function randomStreetNo() {
+  return Math.round(Math.random() * 40);
 }
 
 bootstrap().then((_) => console.log('Finished script'));

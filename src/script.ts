@@ -66,7 +66,7 @@ function sanitizeJob(job: any) {
     billRate: billRate,
     jobSpecialties: job.jobSpecialties.map((s) => ({
       specialty: {
-        speciality_color: s.specialty.specialty_color,
+        specialty_color: s.specialty.specialty_color,
         specialty_title: s.specialty.specialty_title,
         specialty_acronym: s.specialty.specialty_acronym,
       },

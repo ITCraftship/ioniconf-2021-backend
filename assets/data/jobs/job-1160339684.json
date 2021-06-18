@@ -1,0 +1,35 @@
+{
+  "job_id": "1160339684",
+  "job_price": 36.6,
+  "job_status": {
+    "job_status_id": 2,
+    "job_status_text": "Viewed"
+  },
+  "facility": {
+    "fac_dp_primary_id": "465111",
+    "fac_name": "Sandy Healthcare",
+    "fac_street_address": "Something Str 11",
+    "fac_city": "Sandy",
+    "fac_zip_code": "84070",
+    "fac_state_abbreviation": "UT",
+    "image_url": "https://storage.googleapis.com/nursa-prod.appspot.com/FacilitiesPhotos/465111.png?GoogleAccessId=firebase-adminsdk-3p1w1%40nursa-prod.iam.gserviceaccount.com&Expires=4105033200&Signature=r6xdNmlXXz1FsLFD4VT0693%2BDTyb9wi6SfGDmdWMFdrBh2dAQ3E49dvm6Pf7dg7JdhMGUJpz4%2BM8szF6mfEF3fiybLQkQvzn4jM0PpRVJHLplI%2BrPgbLRJ6FzwhGGrxK%2BuEiicMbsqMqUKmyRW%2BOr%2FKzvru5bemqIa396w8JzTUUNVTURCoTKmD8%2BznPzEV5KJL3BBEOH39PdV6Im0mLFXXz7ab8uAfwNVmELndO3lMJJwHsIZwC4qxrZU6tAiMZEnuH9PcTrLO9XDSi8Lo7pLMm9ahNiXhCbLgyNYidpFHdsd4p%2F89UN4V6Xw1aqd9dCAlZQBU4iOAU6SdES4dEew%3D%3D",
+    "fac_system": null,
+    "no_distance": false,
+    "fac_number_of_beds": 164
+  },
+  "billRate": 43.1,
+  "jobSpecialties": [
+    {
+      "specialty": {
+        "specialty_color": "#fc5032",
+        "specialty_title": "Skilled Nursing",
+        "specialty_acronym": "SKL"
+      }
+    }
+  ],
+  "job_shift": "06:00 - 14:00",
+  "job_start_date": "2021-06-18",
+  "licenseType": "CNA",
+  "job_type": "PER_DIEM",
+  "job_description": "Come in through the the front door get checked in by the receptionist and report to the charge nurse on 200 hall"
+}

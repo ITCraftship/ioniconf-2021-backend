@@ -61,11 +61,12 @@ function sanitizeJob(job: any) {
       fac_name: `${job.facility.fac_city} ${randomFacilitySuffix()}`,
       fac_street_address: `Something Str ${randomStreetNo()}`,
       facilities_description: undefined,
+      fac_number_of_beds: randomNumberOfBeds(),
     },
     billRate: billRate,
     jobSpecialties: job.jobSpecialties.map((s) => ({
       specialty: {
-        speciality_color: s.specialty.speciality_color,
+        speciality_color: s.specialty.specialty_color,
         specialty_title: s.specialty.specialty_title,
         specialty_acronym: s.specialty.specialty_acronym,
       },
@@ -76,6 +77,13 @@ function sanitizeJob(job: any) {
     job_type: job.job_type,
     job_description: job.job_description,
   };
+}
+
+function randomNumberOfBeds() {
+  const max = 200;
+  const min = 50;
+  const beds = Math.random() * (max - min) + min;
+  return Math.round(beds);
 }
 
 function randomFacilitySuffix() {
